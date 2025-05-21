@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Frontend Mentor | E-commerce product page</title>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            padding: 30px 200px;
+            font-family: 'Inter';
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 1px solid hsl(219, 9%, 45%);
+            padding-bottom: 30px;
+
+            .burger {
+                display: none;
+            }
+
+            .navigation {
+                display: flex;
+                flex-direction: row;
+
+
+
+                a {
+                    margin: 4px 9px;
+                    color: hsl(219, 9%, 45%);
+                    text-decoration: none;
+                }
+            }
+
+            .navigation-2 {
+                display: none;
+            }
+
+            .icons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+
+                img:nth-child(1) {
+                    width: 20px;
+                    height: 20px;
+                    object-fit: cover;
+                    cursor: pointer;
+
+                }
+
+                img:nth-child(2) {
+                    width: 33px;
+                    height: 33px;
+                    object-fit: cover;
+                    cursor: pointer;
+
+                }
+            }
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 30px;
+
+            .images {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .bigIMg {
+                    width: 450px;
+                    height: 450px;
+                    border-radius: 10px;
+                }
+
+                .thumbnail {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 15px;
+
+                    img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                    }
+
+                    img:hover {
+                        opacity: 0.5;
+                    }
+                }
+
+                .btns {
+                    display: none;
+                }
+            }
+
+            .desc {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                justify-content: center;
+
+                .spanFirst {
+                    color: hsl(219, 9%, 45%);
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                }
+
+                h2 {
+                    font-size: 2.5rem;
+                }
+
+                p {
+                    font-size: 0.8rem;
+                    color: hsl(219, 9%, 45%);
+                }
+
+                .newPrice {
+                    font-weight: bold;
+                    font-size: 23px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .skidka {
+                    background-color: hsl(220, 13%, 13%);
+                    color: white;
+                    font-size: 0.8rem;
+                    padding: 2px 4px;
+                    border-radius: 6px;
+                }
+
+                .lineThrough {
+                    text-decoration: line-through;
+                    color: hsl(219, 9%, 45%);
+                    font-weight: bold;
+                    font-size: 0.8rem;
+                }
+
+                .buttons {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 20px;
+
+                    .counter {
+                        background-color: hsl(223, 64%, 98%);
+                        padding: 10px 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        /* flex-direction: row; */
+                        color: hsl(220, 13%, 13%);
+                        border-radius: 6px;
+                        font-weight: bold;
+                        gap: 20px;
+
+                        .minusBtn {
+                            cursor: pointer;
+                        }
+
+                        .plusBtn {
+                            cursor: pointer;
+                        }
+                    }
+
+                    button {
+                        padding: 10px 15px;
+                        background-color: hsl(26, 100%, 55%);
+                        font-weight: bold;
+                        border-radius: 6px;
+                        outline: none;
+                        border: none;
+                        color: hsl(220, 13%, 13%);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .cartBlock {
+            position: absolute;
+            right: 10%;
+            top: 10%;
+            display: none;
+            flex-direction: column;
+            padding: 6px;
+            width: 350px;
+            height: 180px;
+            background-color: white;
+            border-radius: 6px;
+            -webkit-box-shadow: 0px 19px 26px 0px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 0px 19px 26px 0px rgba(34, 60, 80, 0.2);
+            box-shadow: 0px 19px 26px 0px rgba(34, 60, 80, 0.2);
+
+            span {
+                padding-bottom: 4px;
+                border-bottom: 1px solid rgb(180, 180, 180);
+                font-size: 0.85rem;
+                font-weight: bold;
+            }
+
+            .content {
+                font-size: 0.9rem;
+                font-weight: bold;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                /* height: 100px; */
+
+                .product {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 20px;
+
+                    img {
+                        width: 55px;
+                        height: 55px;
+                        border-radius: 6px;
+                    }
+
+                    .deleteIcon {
+                        width: 20px;
+                        height: 20px;
+                        cursor: pointer;
+                    }
+
+                    p {
+                        font-weight: 500;
+                        font-size: 1.05rem;
+                        color: hsl(219, 9%, 45%);
+
+                        strong {
+                            color: hsl(220, 13%, 13%);
+                        }
+                    }
+
+                    .name {
+                        font-size: 1rem;
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    background-color: hsl(26, 100%, 55%);
+                    color: hsl(220, 13%, 13%);
+                    font-weight: bold;
+                    padding: 10px;
+                    border: none;
+                    outline: none;
+                    border-radius: 6px;
+                }
+            }
+        }
+
+        @media screen and (max-width:970px) {
+            body {
+                padding: 0px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            header .burger {
+                display: block;
+                cursor: pointer;
+            }
+
+            header .navigation {
+                display: none;
+            }
+
+            header .navigation-2 {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: -290px;
+                width: 250px;
+                height: 100%;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+                z-index: 10000;
+
+                .closeBtn {
+                    font-size: 24px;
+                    cursor: pointer;
+                    margin-bottom: 20px;
+                }
+
+                a {
+                    margin: 4px 9px;
+                    color: hsl(220, 13%, 13%);
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
+
+            header .navigation-2.show {
+                left: 0;
+            }
+
+            header .burger {
+                order: 0;
+            }
+
+            header .logo {
+                order: 1;
+            }
+
+            header .icons {
+                order: 2;
+            }
+
+            .main {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 0;
+
+                .images {
+                    padding: 0;
+
+                    .bigIMg {
+                        width: 100%;
+                        object-fit: cover;
+                        border-radius: 0px;
+                        position: relative;
+                    }
+
+                    .btns {
+                        position: absolute;
+                        display: flex;
+                        top: 40%;
+                        flex-direction: row;
+                        align-items: center;
+                        width: 100%;
+                        justify-content: space-between;
+
+                        button {
+                            width: 35px;
+                            height: 35px;
+                            border-radius: 50%;
+                            outline: none;
+                            border: none;
+                            background-color: white;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            margin: 0 10px;
+                        }
+                    }
+
+
+                    .thumbnail {
+                        display: none;
+                    }
+                }
+
+                .desc {
+                    padding: 20px;
+
+                    .buttons {
+                        flex-direction: column;
+                    }
+                }
+            }
+
+            .cartBlock {
+                position: absolute;
+                right: 2%;
+                top: 10%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><img src="images/logo.svg" alt=""></div>
+        <div class="burger"><box-icon name="menu" color="black"></box-icon></div>
+        <div class="navigation">
+            <a href="">Collections</a>
+            <a href="">Men</a>
+            <a href="">Women</a>
+            <a href="">About</a>
+            <a href="">Contact</a>
+        </div>
+        <div class="navigation-2">
+            <div class="closeBtn">&times;</div>
+            <a href="">Collections</a>
+            <a href="">Men</a>
+            <a href="">Women</a>
+            <a href="">About</a>
+            <a href="">Contact</a>
+        </div>
+        <div class="icons">
+            <img class="cartBtn" src="images/icon-cart.svg" alt="">
+            <img class="userBtn" src="images/image-avatar.png" alt="">
+        </div>
+    </header>
+    <div class="main">
+        <div class="images">
+            <img class="bigIMg" src="images/image-product-1.jpg" alt="">
+            <div class="btns">
+                <button class="prevBtn"><img src="images/icon-previous.svg" alt=""></button>
+                <button class="nextBtn"><img src="images/icon-next.svg" alt=""></button>
+            </div>
+            <div class="thumbnail">
+                <img class="thumbEl" src="images/image-product-1.jpg" alt="">
+                <img class="thumbEl" src="images/image-product-2.jpg" alt="">
+                <img class="thumbEl" src="images/image-product-3.jpg" alt="">
+                <img class="thumbEl" src="images/image-product-4.jpg" alt="">
+            </div>
+        </div>
+        <div class="desc">
+            <span class="spanFirst">Sneaker Company</span>
+            <h2>Fall Limited Edition Sneakers</h2>
+            <p>
+                These low-profile sneakers are your perfect casual wear companion. Featuring a
+                durable rubber outer sole, they’ll withstand everything the weather can offer.
+            </p>
+            <span class="newPrice">$125.00 <span class="skidka">50%</span></span>
+            <span class="lineThrough">$250.00</span>
+            <div class="buttons">
+                <span class="counter">
+                    <img src="images/icon-minus.svg" alt="" class="minusBtn">
+                    <div class="num">0</div> <img src="images/icon-plus.svg" alt="" class="plusBtn">
+                </span>
+                <button class="addCart">Add to cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="cartBlock">
+        <span>Cart</span>
+        <div class="content">Your cart is empty.</div>
+    </div>
+
+    <script>
+        const minusBtn = document.querySelector('.minusBtn')
+        const plusBtn = document.querySelector('.plusBtn')
+        const num = document.querySelector('.num')
+        const cartBtn = document.querySelector('.cartBtn')
+        const userBtn = document.querySelector('.userBtn')
+        const addCart = document.querySelector('.addCart')
+        const cartBlock = document.querySelector('.cartBlock')
+        const content = document.querySelector('.content')
+        const navigation2 = document.querySelector('.navigation-2')
+        const burger = document.querySelector('.burger')
+        const closeBtn = document.querySelector('.closeBtn')
+
+
+        // Show menu when burger is clicked
+        burger.addEventListener('click', function () {
+            navigation2.classList.add('show');
+        });
+
+        // Hide menu when close button is clicked
+        closeBtn.addEventListener('click', function () {
+            navigation2.classList.remove('show');
+        });
+
+
+        //counter
+
+        let count = 0
+
+        plusBtn.addEventListener('click', function () {
+            count++;
+            num.textContent = count;
+
+        })
+
+        minusBtn.addEventListener('click', function () {
+            if (num.textContent > 0) {
+                count -= 1;
+                num.textContent = count;
+            }
+        })
+
+        //cartAppears
+        cartBtn.addEventListener('click', function () {
+            cartBlock.style.display = 'flex';
+        })
+        cartBtn.addEventListener('dblclick', function () {
+            cartBlock.style.display = 'none';
+        })
+
+        userBtn.addEventListener('click', function () {
+            cartBlock.style.display = 'flex';
+        })
+        userBtn.addEventListener('dblclick', function () {
+            cartBlock.style.display = 'none';
+        })
+
+        addCart.addEventListener('click', function () {
+            cartBlock.style.display = 'flex';
+            if (count > 0) {
+                content.innerHTML = ''
+                let payment = 125 * count;
+                let newSrc = bigIMg.src;
+                content.innerHTML = `
+        <div class="product">
+          <img src="${newSrc}">
+          <div class="info">
+            <p class="name">Fall Limited Edition Sneakers</p>
+            <p>$125.00 x ${count} <strong>$${payment}</strong></p>
+          </div>
+          <img class="deleteIcon" src="images/icon-delete.svg" alt="">
+        </div>
+        <button>Checkout</button>
+      `
+                const deleteIcon = document.querySelector('.deleteIcon')
+                deleteIcon.addEventListener('click', function () {
+                    content.innerHTML = 'Your cart is empty.'
+                    num.textContent = '0'
+                    count = 0
+                })
+            } else if (num.textContent === '0') {
+                content.innerHTML = 'Your cart is empty.'
+            }
+        })
+
+
+        addCart.addEventListener('dblclick', function () {
+            cartBlock.style.display = 'none';
+
+        })
+
+        //photo
+        const bigIMg = document.querySelector('.bigIMg')
+        const images = document.querySelectorAll('.thumbEl')
+
+        images.forEach(el => {
+            el.addEventListener('click', function () {
+                bigIMg.src = el.src;
+            })
+        });
+
+        const nextBtn = document.querySelector('.nextBtn')
+        const prevBtn = document.querySelector('.prevBtn')
+
+        nextBtn.addEventListener('click', function () {
+            if (bigIMg.src.includes('image-product-1.jpg')) {
+                bigIMg.src = 'images/image-product-2.jpg';
+            } else if (bigIMg.src.includes('image-product-2.jpg')) {
+                bigIMg.src = 'images/image-product-3.jpg';
+            } else if (bigIMg.src.includes('image-product-3.jpg')) {
+                bigIMg.src = 'images/image-product-4.jpg';
+            } else if (bigIMg.src.includes('image-product-4.jpg')) {
+                bigIMg.src = 'images/image-product-1.jpg';
+            }
+        });
+        prevBtn.addEventListener('click', function () {
+            if (bigIMg.src.includes('image-product-1.jpg')) {
+                bigIMg.src = 'images/image-product-4.jpg';
+            } else if (bigIMg.src.includes('image-product-2.jpg')) {
+                bigIMg.src = 'images/image-product-1.jpg';
+            } else if (bigIMg.src.includes('image-product-3.jpg')) {
+                bigIMg.src = 'images/image-product-2.jpg';
+            } else if (bigIMg.src.includes('image-product-4.jpg')) {
+                bigIMg.src = 'images/image-product-3.jpg';
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>
