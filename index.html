@@ -291,6 +291,7 @@
             color: white;
             font-weight: bold;
             font-size: 0.9rem;
+            cursor: pointer;
         }
 
         @media screen and (max-width:970px) {
@@ -532,6 +533,7 @@
                 content.innerHTML = 'Your cart is empty.'
                 num.textContent = '0'
                 count = 0
+                numberOf.textContent = count;
             })
             numberOf.textContent = count;
         })
@@ -557,9 +559,10 @@
       `
                 const deleteIcon = document.querySelector('.deleteIcon')
                 deleteIcon.addEventListener('click', function () {
-                    content.innerHTML = 'Your cart is empty.'
-                    num.textContent = '0'
-                    count = 0
+                    content.innerHTML = 'Your cart is empty.';
+                    num.textContent = '0';
+                    count = 0;
+
                 })
                 numberOf.textContent = count;
             } if (num.textContent === 0 || count === 0) {
@@ -604,6 +607,7 @@
                     content.innerHTML = 'Your cart is empty.'
                     num.textContent = '0'
                     count = 0
+                    numberOf.textContent = 0;
                 })
             } else if (num.textContent === '0') {
                 content.innerHTML = 'Your cart is empty.'
