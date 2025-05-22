@@ -277,6 +277,22 @@
             }
         }
 
+        .numShoes {
+            background-color: hsl(26, 100%, 55%);
+            position: absolute;
+            top: 30px;
+            right: 16%;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
         @media screen and (max-width:970px) {
             body {
                 padding: 0px;
@@ -458,13 +474,16 @@
                 <button class="addCart">Add to cart</button>
             </div>
         </div>
+
     </div>
     <div class="cartBlock">
         <span>Cart</span>
         <div class="content">Your cart is empty.</div>
     </div>
+    <div class="numShoes"><span class="numberOf">0</span></div>
 
     <script>
+
         const minusBtn = document.querySelector('.minusBtn')
         const plusBtn = document.querySelector('.plusBtn')
         const num = document.querySelector('.num')
@@ -476,33 +495,75 @@
         const navigation2 = document.querySelector('.navigation-2')
         const burger = document.querySelector('.burger')
         const closeBtn = document.querySelector('.closeBtn')
+        const numberOf = document.querySelector('.numberOf')
+        const numShoes = document.querySelector('.numShoes')
 
-
-        // Show menu when burger is clicked
         burger.addEventListener('click', function () {
             navigation2.classList.add('show');
         });
 
-        // Hide menu when close button is clicked
         closeBtn.addEventListener('click', function () {
             navigation2.classList.remove('show');
         });
 
-
-        //counter
-
         let count = 0
 
         plusBtn.addEventListener('click', function () {
+            numShoes.style.display = 'flex'
             count++;
             num.textContent = count;
-
+            cartBlock.style.display = 'flex';
+            content.innerHTML = ''
+            let payment = 125 * count;
+            let newSrc = bigIMg.src;
+            content.innerHTML = `
+        <div class="product">
+          <img src="${newSrc}">
+          <div class="info">
+            <p class="name">Fall Limited Edition Sneakers</p>
+            <p>$125.00 x ${count} <strong>$${payment}</strong></p>
+          </div>
+          <img class="deleteIcon" src="images/icon-delete.svg" alt="">
+        </div>
+        <button>Checkout</button>
+      `
+            const deleteIcon = document.querySelector('.deleteIcon')
+            deleteIcon.addEventListener('click', function () {
+                content.innerHTML = 'Your cart is empty.'
+                num.textContent = '0'
+                count = 0
+            })
+            numberOf.textContent = count;
         })
 
         minusBtn.addEventListener('click', function () {
             if (num.textContent > 0) {
                 count -= 1;
                 num.textContent = count;
+                cartBlock.style.display = 'flex';
+                content.innerHTML = ''
+                let payment = 125 * count;
+                let newSrc = bigIMg.src;
+                content.innerHTML = `
+        <div class="product">
+          <img src="${newSrc}">
+          <div class="info">
+            <p class="name">Fall Limited Edition Sneakers</p>
+            <p>$125.00 x ${count} <strong>$${payment}</strong></p>
+          </div>
+          <img class="deleteIcon" src="images/icon-delete.svg" alt="">
+        </div>
+        <button>Checkout</button>
+      `
+                const deleteIcon = document.querySelector('.deleteIcon')
+                deleteIcon.addEventListener('click', function () {
+                    content.innerHTML = 'Your cart is empty.'
+                    num.textContent = '0'
+                    count = 0
+                })
+                numberOf.textContent = count;
+            } if (num.textContent === 0 || count === 0) {
+                content.innerHTML = 'Your cart is empty.'
             }
         })
 
@@ -590,9 +651,6 @@
                 bigIMg.src = 'images/image-product-3.jpg';
             }
         })
-
-
-
     </script>
 </body>
 
